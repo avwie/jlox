@@ -42,4 +42,10 @@ class ScannerTest {
         assertEquals(TokenType.EQUAL, tokens.get(2).type);
         assertEquals(TokenType.STRING, tokens.get(3).type);
     }
+
+    @Test
+    void scanNumbers() {
+        var tokens = new Scanner("123.45").scanTokens();
+        assertEquals(TokenType.NUMBER, tokens.get(0).type);
+    }
 }
