@@ -1,12 +1,12 @@
-package nl.avwie.jlox;
+package nl.avwie.jlox.scanner;
 
 public class Token {
-    final TokenType type;
-    final String lexeme;
-    final Object literal;
-    final int line;
+    public final TokenType type;
+    public final String lexeme;
+    public final Object literal;
+    public final int line;
 
-    Token(TokenType tokenType, String lexeme, Object literal, int line) {
+    public Token(TokenType tokenType, String lexeme, Object literal, int line) {
         this.type = tokenType;
         this.lexeme = lexeme;
         this.literal = literal;

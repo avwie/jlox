@@ -1,11 +1,11 @@
-package nl.avwie.jlox;
+package nl.avwie.jlox.scanner;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static nl.avwie.jlox.TokenType.*;
+import static nl.avwie.jlox.scanner.TokenType.*;
 
 public class Scanner {
 

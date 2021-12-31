@@ -1,4 +1,4 @@
-package nl.avwie.jlox;
+package nl.avwie.jlox.scanner;
 
 import org.junit.jupiter.api.Test;
 
