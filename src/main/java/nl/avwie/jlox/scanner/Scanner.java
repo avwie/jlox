@@ -1,5 +1,7 @@
 package nl.avwie.jlox.scanner;
 
+import nl.avwie.jlox.JLox;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

@@ -1,4 +1,10 @@
-package nl.avwie.jlox.scanner;
+package nl.avwie.jlox;
+
+import nl.avwie.jlox.parser.Parser;
+import nl.avwie.jlox.parser.visitor.AstPrinter;
+import nl.avwie.jlox.scanner.Scanner;
+import nl.avwie.jlox.scanner.Token;
+import nl.avwie.jlox.scanner.TokenType;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -34,7 +40,7 @@ public class JLox {
         var reader = new BufferedReader(input);
 
         while (true) {
-            System.out.println("> ");
+            System.out.print("> ");
             var line = reader.readLine();
             if (line == null) break;
 
@@ -46,17 +52,26 @@ public class JLox {
     public static void run(String source) throws IOException {
         var scanner = new Scanner(source);
         var tokens = scanner.scanTokens();
+        var parser = new Parser(tokens);
+        var expr = parser.parse();
 
-        for (Token token : tokens) {
-            System.out.println(token);
-        }
+        if (hadError) return;
+        System.out.println(new AstPrinter().print(expr));
     }
 
-    static void error(int line, String message) {
+    public static void error(int line, String message) {
         report(line, "", message);
     }
 
-    static void report(int line, String where, String message) {
+    public static void error(Token token, String message) {
+        if (token.type == TokenType.EOF) {
+            report(token.line, " at end", message);
+        } else {
+            report(token.line, " at '" + token.lexeme + "'", message);
+        }
+    }
+
+    public static void report(int line, String where, String message) {
         System.err.println("[line " + line + "] Error" + where + ": " + message);
         hadError = true;
     }
